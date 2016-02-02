@@ -24,6 +24,8 @@ Installation
 ============
 
 Please refer to the wiki for [installation instructions](https://github.com/byt3bl33d3r/MITMf/wiki/Installation)
+$ git submodule init && git submodule update --recursive 
+$ pip install -r requirements.txt
 
 Description
 ============
