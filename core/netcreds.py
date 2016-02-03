@@ -550,12 +550,13 @@ def other_parser(src_ip_port, dst_ip_port, full_load, ack, seq, pkt, verbose):
     else:
         host = ''
 
-    if parsing_pcap is True:
-
+    # i want this code is always executed
+    if True:
         if http_line != None:
             method, path = parse_http_line(http_line, http_methods)
             http_url_req = get_http_url(method, host, path, headers)
-            if http_url_req != None:
+            # print HTTP request and HTTP url only when parsing PCAP
+            if http_url_req != None and parsing_pcap:
                 if verbose == False:
                     if len(http_url_req) > 98:
                         http_url_req = http_url_req[:99] + '...'
@@ -576,23 +577,22 @@ def other_parser(src_ip_port, dst_ip_port, full_load, ack, seq, pkt, verbose):
                     # Set a limit on how long they can be prevent false+
                     if len(http_user) > 75 or len(http_pass) > 75:
                         return
-                    user_msg = 'HTTP username: %s' % http_user
-                    printer(src_ip_port, dst_ip_port, user_msg)
-                    pass_msg = 'HTTP password: %s' % http_pass
-                    printer(src_ip_port, dst_ip_port, pass_msg)
+                    # let's print http creds in one line
+                    msg = 'HTTP auth creds (see full load for more info): "%s:%s"' % (http_user, http_pass)
+                    printer(src_ip_port, dst_ip_port, msg)
                 except UnicodeDecodeError:
                     pass
 
-        # Print POST loads
+        # Print POST loads only while parsing PCAP (POST load already printed by mitmf)
         # ocsp is a common SSL post load that's never interesting
-        if method == 'POST' and 'ocsp.' not in host:
+        if method == 'POST' and 'ocsp.' not in host and parsing_pcap:
             try:
                 if verbose == False and len(body) > 99:
                     # If it can't decode to utf8 we're probably not interested in it
                     msg = 'POST load: %s...' % body[:99].encode('utf8')
                 else:
                     msg = 'POST load: %s' % body.encode('utf8')
-                printer(src_ip_port, None, msg)
+                printer(headers['host'], None, msg)
             except UnicodeDecodeError:
                 pass
 
