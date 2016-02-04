@@ -893,6 +893,7 @@ def get_login_pass(body):
     passwd = None
 
     # Taken mainly from Pcredz by Laurent Gaffie
+    # lets make priority of fields. will be choosen first found field from below lists (not last)
     userfields = ['log','login', 'wpname', 'ahd_username', 'unickname', 'nickname', 'user', 'user_name',
                   'alias', 'pseudo', 'email', 'username', '_username', 'userid', 'form_loginname', 'loginname',
                   'login_id', 'loginid', 'session_key', 'sessionkey', 'pop_login', 'uid', 'id', 'user_id', 'screename',
@@ -906,10 +907,12 @@ def get_login_pass(body):
         login_re = re.search('(%s=[^&]+)' % login, body, re.IGNORECASE)
         if login_re:
             user = login_re.group()
+            break # we need first field not last
     for passfield in passfields:
         pass_re = re.search('(%s=[^&]+)' % passfield, body, re.IGNORECASE)
         if pass_re:
             passwd = pass_re.group()
+            break
 
     if user and passwd:
         return (user, passwd)
