@@ -578,8 +578,8 @@ def other_parser(src_ip_port, dst_ip_port, full_load, ack, seq, pkt, verbose):
                     if len(http_user) > 75 or len(http_pass) > 75:
                         return
                     # let's print http creds in one line
-                    msg = 'HTTP auth creds (see full load for more info): "%s:%s"' % (http_user, http_pass)
-                    printer(src_ip_port, dst_ip_port, msg)
+                    msg = 'HTTP auth: %s; %s' % (http_user, http_pass)
+                    printer(src_ip_port, None, msg, http_url_req)
                 except UnicodeDecodeError:
                     pass
 
@@ -592,7 +592,7 @@ def other_parser(src_ip_port, dst_ip_port, full_load, ack, seq, pkt, verbose):
                     msg = 'POST load: %s...' % body[:99].encode('utf8')
                 else:
                     msg = 'POST load: %s' % body.encode('utf8')
-                printer(headers['host'], None, msg)
+                log.info(msg)
             except UnicodeDecodeError:
                 pass
 
@@ -917,12 +917,14 @@ def get_login_pass(body):
     if user and passwd:
         return (user, passwd)
 
-def printer(src_ip_port, dst_ip_port, msg):
+def printer(src_ip_port, dst_ip_port, msg, url = None):
     if dst_ip_port != None:
         print_str = '[{} > {}] {}'.format(src_ip_port, dst_ip_port, msg)
         # All credentials will have dst_ip_port, URLs will not
 
         log.info("{}".format(print_str))
+    elif url:
+        log.info("[%s > %s] %s" % (src_ip_port.split(':')[0], url, msg))
     else:
         print_str = '[{}] {}'.format(src_ip_port.split(':')[0], msg)
         log.info("{}".format(print_str))
