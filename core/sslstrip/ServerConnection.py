@@ -75,7 +75,7 @@ class ServerConnection(HTTPClient):
     def sendRequest(self):
         if self.command == 'GET':
 
-            clientlog.info(self.headers['host'], extra=self.clientInfo)
+            clientlog.info(self.headers['host']+self.uri , extra=self.clientInfo)
 
             log.debug("Full request: {}{}".format(self.headers['host'], self.uri))
 
@@ -93,7 +93,7 @@ class ServerConnection(HTTPClient):
             try:
                 postdata = self.postData.decode('utf8') #Anything that we can't decode to utf-8 isn't worth logging
                 if len(postdata) > 0:
-                    clientlog.warning("POST Data ({}):\n{}".format(self.headers['host'], postdata), extra=self.clientInfo)
+                    clientlog.warning("POST Data ({}):\n{}".format(self.headers['host']+self.uri, postdata), extra=self.clientInfo)
             except Exception as e:
                 if ('UnicodeDecodeError' or 'UnicodeEncodeError') in e.message:
                     log.debug("{} Ignored post data from {}".format(self.clientInfo['clientip'], self.headers['host']))
