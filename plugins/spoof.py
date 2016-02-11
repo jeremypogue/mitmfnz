@@ -16,7 +16,9 @@
 # USA
 #
 
+import os
 from plugins.plugin import Plugin
+from subprocess import Popen
 
 class Spoof(Plugin):
     name        = "Spoof"
@@ -28,6 +30,7 @@ class Spoof(Plugin):
         '''Called if plugin is enabled, passed the options namespace'''
         self.options            = options
         self.protocol_instances = []
+        self.sniffer = None
 
         from core.utils import iptables, shutdown, set_ip_forwarding
         #Makes scapy more verbose
@@ -76,6 +79,19 @@ class Spoof(Plugin):
         if not options.arp and not options.icmp and not options.dhcp and not options.dns:
             shutdown("[Spoof] Spoof plugin requires --arp, --icmp, --dhcp or --dns")
 
+        if options.dump:
+            from datetime import datetime
+            dump_path = os.path.join(options.dump,
+                        'mitmf_%s.pcap' % datetime.now().strftime('%Y%m%d%H%M%S'))
+            if not os.path.isdir(options.dump):
+                self.tree_info.append('error dump traffic! no such directory %s' % options.dump)
+            else:
+                filter = self.config['MITMf']['Spoof']['sniff_filter']
+                self.sniffer = Popen('tcpdump -w %s -i %s %s 2> /dev/null'
+                                     %(dump_path, options.interface, filter),
+                                     shell=True)
+                self.tree_info.append('sniffing all trafic to %s' % dump_path)
+
         set_ip_forwarding(1)
 
         if iptables().http is False and options.filter is None:
@@ -90,6 +106,7 @@ class Spoof(Plugin):
         group.add_argument('--icmp', dest='icmp', action='store_true', help='Redirect traffic using ICMP redirects')
         group.add_argument('--dhcp', dest='dhcp', action='store_true', help='Redirect traffic using DHCP offers')
         options.add_argument('--dns', dest='dns', action='store_true', help='Proxy/Modify DNS queries')
+        options.add_argument('--dump', dest='dump', type=str, default='', help='Output dir to dump all sniffed traffic')
         options.add_argument('--netmask', dest='netmask', type=str, default='255.255.255.0', help='The netmask of the network')
         options.add_argument('--shellshock', type=str, metavar='PAYLOAD', dest='shellshock', help='Trigger the Shellshock vuln when spoofing DHCP, and execute specified command')
         options.add_argument('--gateway', dest='gateway', help='Specify the gateway IP')
@@ -104,6 +121,9 @@ class Spoof(Plugin):
         for protocol in self.protocol_instances:
             if hasattr(protocol, 'stop'):
                 protocol.stop()
+
+        if self.sniffer:
+            self.sniffer.kill()
 
         iptables().flush()
 
