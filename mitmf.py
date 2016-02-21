@@ -161,9 +161,12 @@ else:
     mitmfapi().start()
 
     #Start the HTTP Server
-    from core.servers.HTTP import HTTP
-    HTTP().start()
-    print "|_ HTTP server online"
+    if not options.socharvester:
+        from core.servers.HTTP import HTTP
+        HTTP().start()
+        print "|_ HTTP server online"
+    else:
+        print "|_ HTTP server offline because of --socharvester option"
 
     #Start DNSChef
     from core.servers.DNS import DNSChef
