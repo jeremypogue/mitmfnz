@@ -76,8 +76,8 @@ class Spoof(Plugin):
             if iptables().dns is False and options.filter is None:
                 iptables().DNS(self.config['MITMf']['DNS']['port'])
 
-        if not options.arp and not options.icmp and not options.dhcp and not options.dns:
-            shutdown("[Spoof] Spoof plugin requires --arp, --icmp, --dhcp or --dns")
+        if not options.arp and not options.icmp and not options.dhcp and not options.dns and not options.dump:
+            shutdown("[Spoof] Spoof plugin requires --arp, --icmp, --dhcp, --dns or --dump")
 
         if options.dump:
             from datetime import datetime
