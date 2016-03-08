@@ -1,3 +1,4 @@
+*.attr
 /plugins/old_plugins/
 backdoored/
 # Byte-compiled / optimized / DLL files
