@@ -34,7 +34,7 @@ from config.regex_url import ignored_get_req
 
 from colorama import Fore as F
 
-formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] %(message)s", datefmt="%m-%d %H:%M")
+formatter = logging.Formatter("%(asctime)s %(clientip)s [%(clientos)s : %(browser)s-%(browserv)s] %(message)s", datefmt="%m-%d %H:%M")
 clientlog = logger().setup_logger("ServerConnection_clientlog", formatter)
 
 formatter = logging.Formatter("%(asctime)s [ServerConnection] %(message)s", datefmt="%m-%d %H:%M")
