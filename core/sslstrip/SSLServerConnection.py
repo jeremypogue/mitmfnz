@@ -24,7 +24,7 @@ from ServerConnection import ServerConnection
 from URLMonitor import URLMonitor
 from core.logger import logger
 
-formatter = logging.Formatter("%(asctime)s [SSLServerConnection] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [SSLServerConnection] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("SSLServerConnection", formatter)
 
 class SSLServerConnection(ServerConnection):

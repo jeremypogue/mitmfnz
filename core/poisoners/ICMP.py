@@ -23,7 +23,7 @@ from time import sleep
 from core.logger import logger
 from scapy.all import IP, ICMP, UDP, sendp
 
-formatter = logging.Formatter("%(asctime)s [ICMPpoisoner] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [ICMPpoisoner] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("ICMPpoisoner", formatter)
 
 class ICMPpoisoner():

@@ -89,10 +89,10 @@ class Plugin(ConfigWatcher):
         pass
 
     def setup_logger(self):
-        formatter = logging.Formatter("%(asctime)s [{}] %(message)s".format(self.name), datefmt="%Y-%m-%d %H:%M:%S")
+        formatter = logging.Formatter("%(asctime)s [{}] %(message)s".format(self.name), datefmt="%m-%d %H:%M")
         self.log = logger().setup_logger(self.name, formatter)
 
-        formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] [{}] %(message)s".format(self.name), datefmt="%Y-%m-%d %H:%M:%S")
+        formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] [{}] %(message)s".format(self.name), datefmt="%m-%d %H:%M")
         self.clientlog = logger().setup_logger("{}_{}".format(self.name, "clientlog"), formatter)
 
     def on_shutdown(self):

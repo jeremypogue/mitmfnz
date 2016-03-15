@@ -22,7 +22,7 @@ from core.logger import logger
 from ServerConnection import ServerConnection
 from URLMonitor import URLMonitor
 
-formatter = logging.Formatter("%(asctime)s [Ferret-NG] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [Ferret-NG] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("Ferret_SSLServerConnection", formatter)
 
 class SSLServerConnection(ServerConnection):

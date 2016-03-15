@@ -32,10 +32,10 @@ from core.proxyplugins import ProxyPlugins
 from core.logger import logger
 from config.regex_url import ignored_get_req
 
-formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] %(message)s", datefmt="%m-%d %H:%M")
 clientlog = logger().setup_logger("ServerConnection_clientlog", formatter)
 
-formatter = logging.Formatter("%(asctime)s [ServerConnection] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [ServerConnection] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("ServerConnection", formatter)
 
 def match_req(fullreq, regexs):

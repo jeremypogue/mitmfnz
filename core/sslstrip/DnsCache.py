@@ -19,7 +19,7 @@
 import logging
 from core.logger import logger
 
-formatter = logging.Formatter("%(asctime)s [DnsCache] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [DnsCache] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("DnsCache", formatter)
 
 class DnsCache:    

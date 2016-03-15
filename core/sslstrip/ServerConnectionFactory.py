@@ -21,7 +21,7 @@ import logging
 from core.logger import logger
 from twisted.internet.protocol import ClientFactory
 
-formatter = logging.Formatter("%(asctime)s [ServerConnectionFactory] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [ServerConnectionFactory] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("ServerConnectionFactory", formatter)
 
 class ServerConnectionFactory(ClientFactory):

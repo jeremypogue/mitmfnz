@@ -25,7 +25,7 @@ from core.logger import logger
 from core.proxyplugins import ProxyPlugins
 from scapy.all import get_if_addr, get_if_hwaddr, get_working_if
 
-formatter = logging.Formatter("%(asctime)s [Utils] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [Utils] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("Utils", formatter)
 
 def shutdown(message=None):

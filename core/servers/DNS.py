@@ -45,7 +45,7 @@ from core.logger import logger
 from dnslib import *
 from IPy import IP
 
-formatter = logging.Formatter("%(asctime)s %(clientip)s [DNS] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s %(clientip)s [DNS] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("DNSChef", formatter)
 
 dnslog = logging.getLogger('dnslog')

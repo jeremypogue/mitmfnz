@@ -170,7 +170,7 @@ class Settings(ConfigWatcher):
             self.Challenge += self.NumChal[i:i+2].decode("hex")
 
         # Set up logging
-        formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+        formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%m-%d %H:%M")
         self.ResponderLogger = logger().setup_logger("Responder", formatter, self.SessionLogFile)
         #logging.warning('Responder Started: {}'.format(self.CommandLine))
         #logging.warning('Responder Config: {}'.format(self))

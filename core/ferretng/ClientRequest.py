@@ -40,7 +40,7 @@ from URLMonitor import URLMonitor
 from CookieCleaner import CookieCleaner
 from DnsCache import DnsCache
 
-formatter = logging.Formatter("%(asctime)s [Ferret-NG] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [Ferret-NG] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("Ferret_ClientRequest", formatter)
 
 class ClientRequest(Request):

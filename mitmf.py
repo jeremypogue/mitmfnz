@@ -74,7 +74,7 @@ options = parser.parse_args()
 logger().log_level = logging.__dict__[options.log_level.upper()]
 
 from core.logger import logger
-formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("MITMf", formatter)
 
 from core.netcreds import NetCreds

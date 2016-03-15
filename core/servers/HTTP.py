@@ -28,7 +28,7 @@ from core.responder.packets import NTLM_Challenge
 from core.responder.packets import IIS_Auth_401_Ans, IIS_Auth_Granted, IIS_NTLM_Challenge_Ans, IIS_Basic_401_Ans
 from core.responder.packets import WPADScript, ServeExeFile, ServeHtmlFile
 
-formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("HTTP", formatter)
 
 class HTTP:

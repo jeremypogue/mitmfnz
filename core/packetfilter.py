@@ -4,7 +4,7 @@ from scapy.all import *
 from traceback import print_exc
 from netfilterqueue import NetfilterQueue
 
-formatter = logging.Formatter("%(asctime)s [PacketFilter] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [PacketFilter] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("PacketFilter", formatter)
 
 class PacketFilter:

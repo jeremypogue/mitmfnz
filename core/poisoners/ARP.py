@@ -23,7 +23,7 @@ from core.logger import logger
 from time import sleep
 from scapy.all import *
 
-formatter = logging.Formatter("%(asctime)s [ARPpoisoner] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s [ARPpoisoner] %(message)s", datefmt="%m-%d %H:%M")
 log = logger().setup_logger("ARPpoisoner", formatter)
 
 class ARPpoisoner:
