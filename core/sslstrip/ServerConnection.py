@@ -32,6 +32,8 @@ from core.proxyplugins import ProxyPlugins
 from core.logger import logger
 from config.regex_url import ignored_get_req
 
+from colorama import Fore as F
+
 formatter = logging.Formatter("%(asctime)s %(clientip)s [type:%(browser)s-%(browserv)s os:%(clientos)s] %(message)s", datefmt="%m-%d %H:%M")
 clientlog = logger().setup_logger("ServerConnection_clientlog", formatter)
 
@@ -80,10 +82,13 @@ class ServerConnection(HTTPClient):
 
     def sendRequest(self):
         if self.command == 'GET':
+            full_req = "%s%s" % (self.headers['host'], self.uri)
+            if match_req(full_req, ignored_get_req):
+                full_req = F.BLACK + full_req + F.RESET
 
-            clientlog.info(self.headers['host']+self.uri , extra=self.clientInfo)
+            clientlog.info(full_req , extra=self.clientInfo)
 
-            log.debug("Full request: {}{}".format(self.headers['host'], self.uri))
+            log.debug("Full request: {}".format(full_req))
 
         self.sendCommand(self.command, self.uri)
 
